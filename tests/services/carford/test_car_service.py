@@ -41,7 +41,7 @@ def test_verify_if_car_exists_by_id_when_car_id_is_invalid_then_raise_car_not_ex
 
 
 @patch.object(CarCarfordRepository, "get_all_cars", return_value=car_model_list_stub)
-def test_get_all_cars_then_return_car_model_list(car_repository_mock):
+def test_get_all_cars_then_return_car_dict_list(car_repository_mock):
     cars = CarCarfordService.get_all_cars()
 
     assert type(cars) == list
@@ -53,7 +53,7 @@ def test_get_all_cars_then_return_car_model_list(car_repository_mock):
 
 
 @patch.object(CarCarfordRepository, "get_car_by_id", return_value=car_model_stub)
-def test_get_car_by_id_when_car_id_is_valid_then_return_car_model(car_repository_mock):
+def test_get_car_by_id_when_car_id_is_valid_then_return_car_dict(car_repository_mock):
     car = CarCarfordService.get_car_by_id(car_id=2)
 
     assert car
