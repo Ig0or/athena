@@ -9,5 +9,4 @@ app = BaseRoute.register_routes()
 SqliteInfrastructure.create_tables()
 
 if __name__ == "__main__":
-    server_port = config("SERVER_PORT")
-    app.run(host="0.0.0.0", port=server_port)
+    app.run(host="0.0.0.0", port=4001)
