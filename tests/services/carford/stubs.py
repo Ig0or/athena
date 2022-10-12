@@ -1,3 +1,4 @@
+# Local
 from src.domain.models.carford.car_model import CarModel
 
 car_model_stub = CarModel(id=2, color="GRAY", model="HATCH", client_id=3)

@@ -15,7 +15,7 @@ from src.domain.models.carford.car_model import CarModel
 from src.repositories.carford.car_repository import CarCarfordRepository
 from src.services.carford.car_service import CarCarfordService
 from src.services.carford.client_service import ClientCarfordService
-from src.tests.services.carford.stubs import (
+from tests.services.carford.stubs import (
     car_input_list_stub,
     car_model_list_stub,
     car_model_stub,
@@ -32,7 +32,7 @@ def test_verify_if_car_exists_by_id_when_car_id_is_valid_then_return_car_model(
     assert isinstance(car, CarModel)
 
 
-@patch.object(CarCarfordRepository, "get_car_by_id", side_effect=CarNotExists)
+@patch.object(CarCarfordRepository, "get_car_by_id", return_value=None)
 def test_verify_if_car_exists_by_id_when_car_id_is_invalid_then_raise_car_not_exists(
     car_repository_mock,
 ):
@@ -167,7 +167,7 @@ def test_delete_car_by_id_car_id_is_valid_then_delete_the_car(
     car_repository_delete_car_by_id.assert_called_with(car_id=2)
 
 
-@patch.object(CarCarfordRepository, "get_car_by_id", side_effect=CarNotExists)
+@patch.object(CarCarfordRepository, "get_car_by_id", return_value=None)
 @patch.object(CarCarfordRepository, "delete_car_by_id")
 def test_delete_car_by_id_car_id_is_invalid_then_raise_car_not_exists(
     car_repository_delete_car_by_id, car_repository_get_car_by_id_mock
