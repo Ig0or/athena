@@ -1,0 +1,8 @@
+[run]
+omit =
+    src/controllers/*
+    src/domain/*
+    src/infrastructure/*
+    src/repositories/*
+    src/routes/*
+    */__init__.py
