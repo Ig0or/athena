@@ -1,4 +1,4 @@
-## Themis API
+## Athena
 
 <hr>
 
