@@ -45,11 +45,20 @@ def test_verify_if_client_exists_by_id_when_client_id_is_invalid_then_raise_clie
 @patch.object(
     ClientCarfordRepository, "get_client_by_id", return_value=client_model_list_stub[1]
 )
-def test_verify_client_sale_opportunity_when_client_not_sale_opportunity_then_raise_client_not_sale_opportunity(
+def test_verify_client_sale_opportunity_when_client_sale_opportunity_is_false_then_raise_client_not_sale_opportunity(
     client_repository_mock,
 ):
     with pytest.raises(ClientNotSaleOpportunity):
         ClientCarfordService.verify_client_sale_opportunity(client_id=1)
+
+
+@patch.object(
+    ClientCarfordRepository, "get_client_by_id", return_value=client_model_list_stub[0]
+)
+def test_verify_client_sale_opportunity_when_client_sale_opportunity_is_true_then_dont_raise_client_not_sale_opportunity(
+    client_repository_mock,
+):
+    ClientCarfordService.verify_client_sale_opportunity(client_id=1)
 
 
 @patch.object(
@@ -60,6 +69,13 @@ def test_verify_client_cars_quantity_when_client_already_had_three_cars_then_rai
 ):
     with pytest.raises(ClientCarsLimitExceeded):
         ClientCarfordService.verify_client_cars_quantity(client_id=1)
+
+
+@patch.object(CarCarfordRepository, "get_cars_by_client_id", return_value=[])
+def test_verify_client_cars_quantity_when_client_already_had_less_then_three_cars_then_dont_raise_client_cars_limit_exceeded(
+    car_repository_mock,
+):
+    ClientCarfordService.verify_client_cars_quantity(client_id=2)
 
 
 @patch.object(
