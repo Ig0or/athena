@@ -1,6 +1,3 @@
-# Third Party
-from decouple import config
-
 # Local
 from src.infrastructure.sqlite.infrastructure import SqliteInfrastructure
 from src.routes.base.routes import BaseRoute
