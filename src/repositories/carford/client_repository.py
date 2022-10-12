@@ -2,11 +2,12 @@
 from typing import List, NoReturn
 
 # Local
+from src.core.repositories.carford.i_client_repository import IClientCarfordRepository
 from src.domain.models.carford.client_model import ClientModel
 from src.repositories.carford.base_repository import BaseCarfordRepository
 
 
-class ClientCarfordRepository(BaseCarfordRepository):
+class ClientCarfordRepository(IClientCarfordRepository, BaseCarfordRepository):
     @classmethod
     def get_all_clients(cls) -> List[ClientModel]:
         clients = cls.session.query(ClientModel).all()

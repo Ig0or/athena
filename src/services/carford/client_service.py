@@ -2,6 +2,7 @@
 from typing import NoReturn
 
 # Local
+from src.core.services.carford.i_client_service import IClientCarfordService
 from src.domain.exceptions.carford.exceptions import (
     ClientAlreadyExists,
     ClientCarsLimitExceeded,
@@ -14,7 +15,7 @@ from src.repositories.carford.car_repository import CarCarfordRepository
 from src.repositories.carford.client_repository import ClientCarfordRepository
 
 
-class ClientCarfordService:
+class ClientCarfordService(IClientCarfordService):
     @staticmethod
     def verify_if_client_exists_by_id(client_id: int) -> ClientModel:
         client = ClientCarfordRepository.get_client_by_id(client_id=client_id)

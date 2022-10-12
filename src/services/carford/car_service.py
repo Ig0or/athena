@@ -2,6 +2,7 @@
 from typing import NoReturn
 
 # Local
+from src.core.services.carford.i_car_service import ICarCarfordService
 from src.domain.exceptions.carford.exceptions import (
     CarNotExists,
 )
@@ -11,7 +12,7 @@ from src.repositories.carford.car_repository import CarCarfordRepository
 from src.services.carford.client_service import ClientCarfordService
 
 
-class CarCarfordService:
+class CarCarfordService(ICarCarfordService):
     @staticmethod
     def _verify_if_car_exists_by_id(car_id: int) -> CarModel:
         car = CarCarfordRepository.get_car_by_id(car_id=car_id)
